@@ -1,12 +1,17 @@
-package com.studentRegistration;
+package com.PollSystemApplication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class StudentRegistrationApplication {
+public class PollSystemApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(StudentRegistrationApplication.class, args);
+		SpringApplication.run(PollSystemApplication.class, args);
+
+
+
 	}
+
+
 }
