@@ -33,7 +33,7 @@ public class PollController {
 
 
 
-    @DeleteMapping("/{pollId}")
+    @DeleteMapping("/delete/{pollId}")
     private void deletePoll(@PathVariable("pollId") Long pollId) {
         pollService.deletePollById(pollId);
     }
