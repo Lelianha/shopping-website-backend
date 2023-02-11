@@ -17,5 +17,4 @@ public interface UserRepository {
     Map<String, Object> getAnswersNumber( Long userId);
     List<Map<String, Object>> getAllQuestions();
 
-
 }

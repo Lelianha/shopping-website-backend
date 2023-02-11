@@ -67,11 +67,14 @@ public class UserRepositoryImpl implements UserRepository {
     return jdbcTemplate.queryForList(sql,questionId);
 }
 
+
+
     @Override
     public  Map<String, Object> getAnswersTotal( Long questionId) {
-        String sql = "SELECT COUNT(DISTINCT user_id) AS Answers_In_Total FROM " + USER_TABLE_NAME + " LEFT JOIN "  + ANSWERS_TABLE_NAME + " ON user.id = answers.user_id" + " LEFT JOIN "  + POLL_TABLE_NAME + " ON answers.question_id = poll.id " + " WHERE answer=poll.first_option OR answer=poll.second_option OR answer=poll.third_option OR answer=poll.fourth_option AND question_id=?";
-        return jdbcTemplate.queryForMap(sql,questionId);
+        String sql = "SELECT COUNT(DISTINCT user_id) AS Answers_In_Total FROM " + USER_TABLE_NAME + " LEFT JOIN "  + ANSWERS_TABLE_NAME + " ON user.id = answers.user_id" + " LEFT JOIN "  + POLL_TABLE_NAME + " ON answers.question_id = poll.id " + " WHERE  answer=poll.first_option AND question_id=? OR answer=poll.second_option AND question_id=? OR answer=poll.third_option AND question_id=? OR answer=poll.fourth_option AND question_id=? ";
+        return jdbcTemplate.queryForMap(sql,questionId,questionId,questionId,questionId);
     }
+
 
 
     @Override
@@ -92,8 +95,6 @@ public class UserRepositoryImpl implements UserRepository {
         String sql = "SELECT title , SUM(answer=poll.first_option) AS Counter_For_First_Option ,SUM(answer=poll.second_option) AS Counter_For_Second_Option , SUM(answer=poll.third_option) AS Counter_For_Third_Option ,SUM(answer=poll.fourth_option) AS Counter_For_Fourth_Option FROM "  + USER_TABLE_NAME + " LEFT JOIN "  + ANSWERS_TABLE_NAME + " ON user.id = answers.user_id" + " LEFT JOIN "  + POLL_TABLE_NAME + " ON answers.question_id = poll.id " + " GROUP BY title" ;
         return jdbcTemplate.queryForList(sql);
     }
-
-
 
 
 }

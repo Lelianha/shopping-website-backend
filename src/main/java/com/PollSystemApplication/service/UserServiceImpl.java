@@ -20,6 +20,9 @@ public  class UserServiceImpl implements UserService {
     @Autowired
     PollService pollService;
 
+    @Autowired
+    UserService userService;
+
     @Override
     public Long createUser(User user) {
         return userRepository.createUser(user);
@@ -54,6 +57,7 @@ public  class UserServiceImpl implements UserService {
         return null ;
     }
 
+
     @Override
     public List<Map<String, Object>> getCountQuestionOptions( Long questionId) {
         return userRepository.getCountQuestionOptions( questionId);
@@ -78,7 +82,6 @@ public  class UserServiceImpl implements UserService {
     public List<Map<String, Object>> getAllQuestions() {
         return userRepository.getAllQuestions();
     }
-
 
 
 
