@@ -76,18 +76,16 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
 
-
     @Override
     public  List<Map<String, Object>> getUserAnswers(Long userId) {
-        String sql = "SELECT  question_id  , answer  FROM " + USER_TABLE_NAME + " LEFT JOIN "  + ANSWERS_TABLE_NAME + " ON user.id = answers.user_id" + " LEFT JOIN "  + POLL_TABLE_NAME + " ON answers.question_id = poll.id " + " WHERE user_id=?";
-        return jdbcTemplate.queryForList(sql, userId);
+        String sql = "SELECT DISTINCT question_id  ,  answer  FROM " + USER_TABLE_NAME + " LEFT JOIN "  + ANSWERS_TABLE_NAME + " ON user.id = answers.user_id" + " LEFT JOIN "  + POLL_TABLE_NAME + " ON answers.question_id = poll.id " + " WHERE  answer=poll.first_option AND user_id=? OR answer=poll.second_option AND user_id=? OR answer=poll.third_option AND user_id=? OR answer=poll.fourth_option AND user_id=?";
+        return jdbcTemplate.queryForList(sql, userId , userId , userId , userId);
     }
-
 
     @Override
     public  Map<String, Object> getAnswersNumber( Long userId) {
-        String sql = "SELECT COUNT(question_id) AS Answers_Number  FROM " + USER_TABLE_NAME + " LEFT JOIN "  + ANSWERS_TABLE_NAME + " ON user.id = answers.user_id" + " LEFT JOIN "  + POLL_TABLE_NAME + " ON answers.question_id = poll.id " + " WHERE user_id=?";
-        return jdbcTemplate.queryForMap(sql,userId);
+        String sql = "SELECT COUNT(DISTINCT question_id) AS Answers_Number  FROM " + USER_TABLE_NAME + " LEFT JOIN "  + ANSWERS_TABLE_NAME + " ON user.id = answers.user_id" + " LEFT JOIN "  + POLL_TABLE_NAME + " ON answers.question_id = poll.id " + " WHERE answer=poll.first_option AND user_id=? OR answer=poll.second_option AND user_id=? OR answer=poll.third_option AND user_id=? OR answer=poll.fourth_option  AND user_id=?";
+        return jdbcTemplate.queryForMap(sql,userId,userId,userId,userId);
     }
 
     @Override
