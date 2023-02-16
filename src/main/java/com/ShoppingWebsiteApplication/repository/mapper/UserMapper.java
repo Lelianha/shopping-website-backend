@@ -1,9 +1,8 @@
-package com.PollSystemApplication.repository.mapper;
+package com.ShoppingWebsiteApplication.repository.mapper;
 
-import com.PollSystemApplication.model.User;
+import com.ShoppingWebsiteApplication.model.User;
 import org.springframework.jdbc.core.RowMapper;
 
-import javax.swing.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -16,12 +15,9 @@ public class UserMapper implements RowMapper<User> {
                 rs.getString("first_name"),
                 rs.getString("last_name"),
                 rs.getString("email"),
-                rs.getDouble("age"),
-                rs.getString("address"),
-                rs.getDate("joining_date").toLocalDate(),
-                rs.getLong("question_id"),
-                rs.getString("answer")
-
+                rs.getString("password"),
+                rs.getString("phone"),
+                rs.getString("address")
         );
     }
 }

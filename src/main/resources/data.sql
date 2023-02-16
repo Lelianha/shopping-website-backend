@@ -1,61 +1,56 @@
-
-DROP TABLE IF EXISTS poll;
+DROP TABLE IF EXISTS item;
 DROP TABLE IF EXISTS user;
-DROP TABLE IF EXISTS answers;
+DROP TABLE IF EXISTS orders;
 
 
-
-CREATE TABLE poll (
+CREATE TABLE item (
     id int(11) unsigned NOT NULL AUTO_INCREMENT,
-    title varchar(300)  ,
-   first_option varchar(300)  ,
-   second_option varchar(300)  ,
-   third_option varchar(300)  ,
-   fourth_option varchar(300)  ,
+    title varchar(300) NOT NULL ,
+    price DOUBLE  NOT NULL ,
+    quantity int(11) NOT NULL ,
+   picture_url varchar(max) NOT NULL,
     PRIMARY KEY (id)
 );
 
 
 CREATE TABLE user (
     id int(11) unsigned NOT NULL AUTO_INCREMENT,
-    first_name varchar(300) ,
-    last_name varchar(300) ,
-    email varchar(300) ,
-    age int(11)  ,
-    address varchar(300)  ,
-   joining_date date NOT NULL ,
+    first_name varchar(300) NOT NULL DEFAULT '',
+    last_name varchar(300) NOT NULL DEFAULT '',
+    email varchar(300) NOT NULL DEFAULT '',
+    password int(11) NOT NULL ,
+    phone int(11) NOT NULL,
+    address varchar(300) NOT NULL ,
     PRIMARY KEY (id)
 );
 
 
-
- CREATE TABLE answers (
+CREATE TABLE orders (
     id int(11) unsigned NOT NULL AUTO_INCREMENT,
-       user_id int (11),
-      question_id int (11)  NOT NULL  ,
-         answer  varchar (300)  NOT NULL DEFAULT 'NO',
-        PRIMARY KEY (id),
-          FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE ,
-                FOREIGN KEY (question_id) REFERENCES poll(id) ON DELETE CASCADE
+    user_id int(11) NOT NULL DEFAULT '',
+    order_date date NOT NULL DEFAULT '',
+    shipping_address varchar(300) NOT NULL DEFAULT '' ,
+    total_price int(11) NOT NULL ,
+    status varchar(300) NOT NULL,
+    item_id int(11) NOT NULL DEFAULT '',
+    PRIMARY KEY (id),
+     FOREIGN KEY (user_id) REFERENCES user(id),
+        FOREIGN KEY (item_id) REFERENCES item(id)
 
 );
 
 
 
-INSERT INTO poll (title , first_option , second_option , third_option , fourth_option ) VALUES
-
-('If you could live anywhere, where would it be?','America','Russia','France','Germany'),
-('What really makes you angry?','Screaming children','People that talk during eat','Being ignored',' Not feeling heard'  ),
-('If you could choose to do anything for a day, what would it be?','Studying','Spending time with friends','Watching movies','Preparing sweets' ),
-('In the evening, would you rather to :' ,'Play a game','Visit a relative','Watch a movie',' Read' ),
-('If you could go back in time, what year would you travel to?','2019','2018','2016',' 2013' ),
-('What are your hobbies?','Sing','Swim','Play football', 'Dance' ),
-('If you were a super-hero, what power would you have?','Read thoughts','The ability to disappear','Prediction','The ability to fly' ),
-('What form of public transportation do you prefer?','Boat','Train','Bus','Airplane'),
-('What is your favorite animal?','Penguin','Dolphin','Butterfly','Flamingo'),
-('What is your favorite fast food chain?','McDonals','Burger king','KFC',' MAX');
-
-
-
-
-
+INSERT INTO item (title , price , quantity , picture_url  ) VALUES
+('Oversized Check Detail Geometric Frame Sunglasses',235.59 , 10 ,'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.vecteezy.com%2Ffree-photos&psig=AOvVaw1oCRg9M7Y_97m4FmdECFBu&ust=1676539830048000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCJi679mbl_0CFQAAAAAdAAAAABAE'),
+('Monogram Motif Oversized Round Frame Lola Sunglasses',321.92 , 10 , 'http.slkkfkl' ),
+('Cat-eye Frame Sunglasses',261.93, 10 , 'http.slkkfkl' ),
+('Monogram Motif Oversized Square Frame Lola Sunglasses',288.27 , 10 , 'http.slkkfkl' ),
+('Logo Detail Cat-eye Frame Sunglasses',321.92, 10 , 'http.slkkfkl' ),
+('Check Square Frame Sunglasses',261.93, 10 , 'http.slkkfkl' ),
+('B Motif Square Frame Sunglasses',351.19, 10 , 'http.slkkfkl' ),
+('Vintage Check Detail Pilot Sunglasses',261.93, 10 , 'http.slkkfkl' ),
+('Logo Lens D-frame Sunglasses',261.93, 10 , 'http.slkkfkl' ),
+('B Lens Detail Rectangular Frame Sunglasses',321.92, 10 , 'http.slkkfkl' ),
+('Vintage Check Detail Butterfly Frame Sunglasses',235.59, 10 , 'http.slkkfkl' ),
+('B Motif Rectangular Frame Sunglasses',351.19, 10 , 'http.slkkfkl' );
