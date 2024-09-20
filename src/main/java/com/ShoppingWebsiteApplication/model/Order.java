@@ -1,7 +1,18 @@
 package com.ShoppingWebsiteApplication.model;
 
+import feign.Retryer;
+
+import java.sql.Array;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 
 public class Order {
 
@@ -11,25 +22,30 @@ public class Order {
 
     private LocalDate orderDate;
 
-    private String  shippingAddress;
+    private String shippingAddress;
 
     private Double totalPrice;
 
     private OrderStatus status;
 
-    private Long itemId;
+    private Long NumberOfItems;
 
-    public Order(Long id , Long userId , LocalDate orderDate , String  shippingAddress , Double totalPrice, OrderStatus status, Long itemId ) {
+
+    public Order() {
+    }
+
+    public Order(Long id,Long userId, LocalDate orderDate, String shippingAddress, Double totalPrice, OrderStatus status,Long NumberOfItems) {
         this.id = id;
         this.userId = userId;
         this.orderDate = orderDate;
         this.shippingAddress = shippingAddress;
         this.totalPrice = totalPrice;
         this.status = status;
-        this.itemId = itemId;
+        this.NumberOfItems = NumberOfItems;
     }
-
-    public Order(){
+    public Order( Long userId, LocalDate orderDate) {
+       this.userId = userId;
+        this.orderDate = orderDate;
 
     }
 
@@ -42,7 +58,13 @@ public class Order {
         return userId;
     }
 
+
     public LocalDate getOrderDate() {
+        orderDate=LocalDate.now();
+
+//        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+//
+//        String formattedDate = orderDate.format(myFormatObj);
         return orderDate;
     }
 
@@ -58,8 +80,8 @@ public class Order {
         return status;
     }
 
-    public Long getItemId() {
-        return itemId;
+    public Long getNumberOfItems() {
+        return NumberOfItems;
     }
 
     public void setId(Long id) {
@@ -69,6 +91,8 @@ public class Order {
     public void setUserId(Long userId) {
         this.userId = userId;
     }
+
+
 
     public void setOrderDate(LocalDate orderDate) {
         this.orderDate = orderDate;
@@ -86,18 +110,7 @@ public class Order {
         this.status = status;
     }
 
-    public void setItemId(Long itemId) {
-        this.itemId = itemId;
+    public void setNumberOfItems(Long numberOfItems) {
+        NumberOfItems = numberOfItems;
     }
-
-
-    public UserOrderResponse toUserOrderResponse( User user , List<Order> orderList){
-        return new UserOrderResponse(
-                user,
-                orderList
-        );
-    }
-
-
-
 }

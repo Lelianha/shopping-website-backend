@@ -2,6 +2,7 @@ package com.ShoppingWebsiteApplication.controller;
 
 
 import com.ShoppingWebsiteApplication.model.Item;
+import com.ShoppingWebsiteApplication.model.Order;
 import com.ShoppingWebsiteApplication.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,37 +14,42 @@ import java.util.List;
 
 public class ItemController {
 
-
-        @Autowired
-        ItemService itemService;
-
-
-        @PostMapping(value = "/create")
-        @CrossOrigin
-        public Long createItem(@RequestBody Item item){
-            return itemService.createItem(item);
-        }
+    @Autowired
+    ItemService itemService;
 
 
-        @GetMapping(value = "/get/{itemId}")
-        public Item getItemById(@PathVariable Long itemId){
-            return itemService.getItemById(itemId);
-        }
+    @PostMapping(value = "/create")
+    @CrossOrigin
+    public Long createItem(@RequestBody Item item){
+        return itemService.createItem(item);
+    }
 
+    @CrossOrigin
+    @GetMapping(value = "/get/{itemId}")
+    public Item getItemById(@PathVariable Long itemId){
+        return itemService.getItemById(itemId);
+    }
 
+//    @CrossOrigin
+//    @GetMapping(value = "/get/price/{itemId}")
+//    public Double getItemPriceById(@PathVariable Long itemId){
+//        return itemService.getItemPriceById(itemId);
+//    }
 
-        @DeleteMapping(value="/delete/{itemId}")
-        private void deleteItemById(@PathVariable("itemId") Long itemId)
-        {
-            itemService.deleteItemById(itemId);
-        }
+    @CrossOrigin
+    @DeleteMapping(value="/delete/{itemId}")
+    private void deleteItemById(@PathVariable("itemId") Long itemId)
+    {
+        itemService.deleteItemById(itemId);
+    }
 
+    @CrossOrigin
+    @PutMapping(value = "/update/{itemId}")
+    private void updateItem(@PathVariable Long itemId ,@RequestBody Item item)
+    {
+        itemService.updateItem(item, itemId);
+    }
 
-        @PutMapping(value = "/update/{itemId}")
-        private void updateItem(@PathVariable Long itemId ,@RequestBody Item item)
-        {
-            itemService.updateItem(item , itemId);
-        }
 
     @CrossOrigin
     @GetMapping(value = "/getAll")
@@ -51,6 +57,5 @@ public class ItemController {
         return itemService.getAllItems();
     }
 
-
-    }
+}
 

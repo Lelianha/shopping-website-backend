@@ -1,19 +1,24 @@
 package com.ShoppingWebsiteApplication.repository;
 
-import com.ShoppingWebsiteApplication.model.User;
+import com.ShoppingWebsiteApplication.model.CustomUser;
 
 import java.util.List;
-import java.util.Map;
 
 public interface UserRepository {
-    Long createUser( User user);
+    void createUser(CustomUser customUser);
+    CustomUser findUserByUsername(String username);
+    Boolean userStatus(Long userId);
 
-    User getUserById(Long userId);
+    CustomUser getUserById(Long userId);
+    Long getUserId(String userName);
 
     void deleteUserById(Long userId);
 
-    void updateUser( User user , Long userId);
+    void updateUserActive(CustomUser customUser, String userName);
 
+void updateUser(CustomUser customUser, Long userId);
+
+    List<CustomUser> getAllUsers();
 
 
 }

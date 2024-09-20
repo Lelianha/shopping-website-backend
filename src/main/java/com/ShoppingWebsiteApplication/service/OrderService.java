@@ -1,17 +1,26 @@
 package com.ShoppingWebsiteApplication.service;
 
+import com.ShoppingWebsiteApplication.model.Item;
 import com.ShoppingWebsiteApplication.model.Order;
-import com.ShoppingWebsiteApplication.model.UserOrderRequest;
-import com.ShoppingWebsiteApplication.model.UserOrderResponse;
+import com.ShoppingWebsiteApplication.model.OrderItems;
+//import com.ShoppingWebsiteApplication.model.UserOrderRequest;
+//import com.ShoppingWebsiteApplication.model.UserOrderResponse;
+
+import java.util.List;
 
 public interface OrderService {
 
-    UserOrderResponse createOrder (UserOrderRequest userOrderRequest) throws Exception;
+    Long createOrder (Order order ) ;
 
     Order getOrderById( Long orderId);
 
     void deleteOrderById( Long orderId);
+    void deleteOrderByUserId(Long userId);
 
-    void updateOrder(Long orderId ,  Order order);
+    void updateOrderShippingAddress(Long orderId ,  Order order);
+    void updateOrderStatus( Long orderId);
+    List<Order> getAllOrders();
+    List<Long> getAllOrdersByUserId(Long userId);
+
 
 }
