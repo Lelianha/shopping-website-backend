@@ -24,7 +24,7 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter {
     private JwtRequestFilter jwtRequestFilter;
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(customUserDetailsService);
     }
 
@@ -41,14 +41,12 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/update/active/{userName}").permitAll()
                 .antMatchers("/user/get/userStatus/{userId}").permitAll()
                 .antMatchers("/user/update/logout/{userId}").permitAll()
-
                 .antMatchers("/user/get/id/{userName}").permitAll()
                 .antMatchers("/user/get/{userId}").permitAll()
                 .antMatchers("/user/getAll").permitAll()
                 .antMatchers("/item/create").permitAll()
                 .antMatchers("/item/get/{itemId}").permitAll()
                 .antMatchers("/item/get/price/{itemId}").permitAll()
-
                 .antMatchers("/item/delete/{itemId}").permitAll()
                 .antMatchers("/item/update/{itemId}").permitAll()
                 .antMatchers("/item/update/quantity/{itemId}").permitAll()
@@ -61,12 +59,10 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter {
                 .antMatchers("/order/getAll/CloseOrders/{userId}").permitAll()
                 .antMatchers("/order/update/shippingAddress/{orderId}").permitAll()
                 .antMatchers("/order/update/status/{orderId}").permitAll()
-
                 .antMatchers("/order/delete/{orderId}").permitAll()
                 .antMatchers("/order/delete/name/{userName}").permitAll()
                 .antMatchers("/orderItems/create").permitAll()
                 .antMatchers("/orderItems/create/one").permitAll()
-
                 .antMatchers("/orderItems/delete/{orderItemsId}").permitAll()
                 .antMatchers("/orderItems/delete/{orderId}/{ItemsId}").permitAll()
                 .antMatchers("/orderItems/delete/userName/{userName}").permitAll()

@@ -1,7 +1,5 @@
 package com.ShoppingWebsiteApplication.model;
 
-
-
 public class CustomUser {
 
     private Long id;
@@ -26,17 +24,6 @@ public class CustomUser {
 
     private String permissions = "";
 
-//    public CustomUser(Long id, String firstName, String lastName, String email, String username, String password, String phone, Address address, Boolean active) {
-//        this.id = id;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.email = email;
-//        this.username = username;
-//        this.password = password;
-//        this.phone = phone;
-//        this.address = address;
-//        this.active = active;
-//    }
 
     public CustomUser(Long id, String firstName, String lastName, String email, String username, String password, String phone, Address address, Boolean active, String roles, String permissions) {
         this.id = id;
@@ -52,9 +39,8 @@ public class CustomUser {
         this.permissions = permissions;
     }
 
-    protected CustomUser(){}
-
-
+    protected CustomUser() {
+    }
 
     public Long getId() {
         return id;

@@ -1,7 +1,6 @@
 package com.ShoppingWebsiteApplication.service;
 
 import com.ShoppingWebsiteApplication.model.*;
-import com.ShoppingWebsiteApplication.repository.OrderItemsRepository;
 import com.ShoppingWebsiteApplication.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +15,9 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public Long createOrder(Order order ) {
-        List<Long> arrOfTempOrders= orderRepository.getAllTempOrdersByUserId(order.getUserId());
-        if(arrOfTempOrders.size()==0) {
+    public Long createOrder(Order order) {
+        List<Long> arrOfTempOrders = orderRepository.getAllTempOrdersByUserId(order.getUserId());
+        if (arrOfTempOrders.size() == 0) {
             return orderRepository.createOrder(order);
         }
         return null;
@@ -26,11 +25,13 @@ public class OrderServiceImpl implements OrderService {
 
 
     @Override
-    public Order getOrderById(Long orderId) {return orderRepository.getOrderById(orderId);
+    public Order getOrderById(Long orderId) {
+        return orderRepository.getOrderById(orderId);
     }
 
     @Override
-    public Order getTempOrderByUserId(Long userId) {return orderRepository.getTempOrderByUserId(userId);
+    public Order getTempOrderByUserId(Long userId) {
+        return orderRepository.getTempOrderByUserId(userId);
     }
 
     @Override
@@ -44,21 +45,26 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void updateOrderShippingAddress( Long orderId , Order order) {
-        orderRepository.updateOrderShippingAddress( orderId , order);
+    public void updateOrderShippingAddress(Long orderId, Order order) {
+        orderRepository.updateOrderShippingAddress(orderId, order);
     }
+
     @Override
-    public void updateOrderStatus( Long orderId ) {orderRepository.updateOrderStatus( orderId);
+    public void updateOrderStatus(Long orderId) {
+        orderRepository.updateOrderStatus(orderId);
     }
+
     @Override
     public List<Order> getAllOrders() {
         return orderRepository.getAllOrders();
     }
+
     @Override
     public List<Long> getAllOrdersByUserId(Long userId) {
         return orderRepository.getAllOrdersByUserId(userId);
     }
-   @Override
+
+    @Override
     public List<Order> getAllCloseOrdersByUserId(Long userId) {
         return orderRepository.getAllCloseOrdersByUserId(userId);
     }

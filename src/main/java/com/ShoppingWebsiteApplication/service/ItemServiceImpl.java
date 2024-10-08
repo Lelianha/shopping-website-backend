@@ -35,12 +35,15 @@ public class ItemServiceImpl implements ItemService {
         itemRepository.deleteItemById(itemId);
     }
 
+    @Override
+    public void updateItem(Item item, Long itemId) {
+        itemRepository.updateItem(item, itemId);
+    }
 
     @Override
-    public void updateItem(Item item, Long itemId) {itemRepository.updateItem(item , itemId);}
-
-    @Override
-    public void updateItemQuantity(Long itemId,Long quantity) {itemRepository.updateItemQuantity( itemId, quantity);}
+    public void updateItemQuantity(Long itemId, Long quantity) {
+        itemRepository.updateItemQuantity(itemId, quantity);
+    }
 
     @Override
     public List<Item> getAllItems() {

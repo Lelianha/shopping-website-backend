@@ -1,8 +1,4 @@
-
-
 package com.ShoppingWebsiteApplication.model;
-
-import java.util.List;
 
 public class OrderItems {
     private Long userId;
@@ -14,13 +10,14 @@ public class OrderItems {
     private Long orderItemId;
 
 
-    public OrderItems(Long userId , Long orderId, Long orderItemId) {
-        this.userId=userId;
+    public OrderItems(Long userId, Long orderId, Long orderItemId) {
+        this.userId = userId;
         this.orderId = orderId;
         this.orderItemId = orderItemId;
     }
+
     public OrderItems(Long userId, Long orderId, Long quantity, Long orderItemId) {
-        this.userId=userId;
+        this.userId = userId;
         this.orderId = orderId;
         this.quantity = quantity;
         this.orderItemId = orderItemId;
@@ -28,13 +25,12 @@ public class OrderItems {
     }
 
     public OrderItems(Long userId, Long orderId) {
-        this.userId=userId;
+        this.userId = userId;
         this.orderId = orderId;
     }
 
     public OrderItems() {
     }
-
 
     public Long getUserId() {
         return userId;

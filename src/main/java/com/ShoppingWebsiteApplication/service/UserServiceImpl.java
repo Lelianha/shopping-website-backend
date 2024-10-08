@@ -1,11 +1,7 @@
 package com.ShoppingWebsiteApplication.service;
 
-//import com.ShoppingWebsiteApplication.model.Item;
 import com.ShoppingWebsiteApplication.model.CustomUser;
-//import com.ShoppingWebsiteApplication.model.UserRequest;
-//import com.ShoppingWebsiteApplication.model.UserResponse;
 import com.ShoppingWebsiteApplication.model.CustomUserRequest;
-import com.ShoppingWebsiteApplication.model.Order;
 import com.ShoppingWebsiteApplication.repository.ItemRepository;
 import com.ShoppingWebsiteApplication.repository.OrderItemsRepository;
 import com.ShoppingWebsiteApplication.repository.OrderRepository;
@@ -16,26 +12,15 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public  class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
     UserRepository userRepository;
-    @Autowired
-    OrderRepository orderRepository;
-    @Autowired
-    OrderItemsRepository orderItemsRepository;
-
-    @Autowired
-    ItemRepository itemRepository;
-//    @Override
-//    public Long createUser(User user) {
-//        return userRepository.createUser(user);
-//    }
 
     @Override
     public void createUser(CustomUserRequest customUserRequest) throws Exception {
         CustomUser existingCustomUser = userRepository.findUserByUsername(customUserRequest.getUsername());
-        if(existingCustomUser != null){
+        if (existingCustomUser != null) {
             throw new Exception("Username " + customUserRequest.getUsername() + " is already taken");
         }
         userRepository.createUser(customUserRequest.toCustomUser());
@@ -50,8 +35,9 @@ public  class UserServiceImpl implements UserService {
     public Boolean userStatus(Long userId) {
         return userRepository.userStatus(userId);
     }
+
     @Override
-    public  Long getUserId(String userName) {
+    public Long getUserId(String userName) {
         return userRepository.getUserId(userName);
     }
 
@@ -60,22 +46,26 @@ public  class UserServiceImpl implements UserService {
         return userRepository.getUserById(userId);
     }
 
-
     @Override
     public void deleteUserById(Long userId) {
 
         userRepository.deleteUserById(userId);
     }
 
-
-
     @Override
-    public void updateUser(CustomUser customUser, Long userId) {userRepository.updateUser(customUser, userId);}
-    @Override
-    public void updateUserActive(CustomUser customUser, String userName) {userRepository.updateUserActive(customUser,  userName);}
+    public void updateUser(CustomUser customUser, Long userId) {
+        userRepository.updateUser(customUser, userId);
+    }
 
     @Override
-    public void UserLogOut(CustomUser customUser, Long userId) {userRepository.UserLogOut(customUser, userId);}
+    public void updateUserActive(CustomUser customUser, String userName) {
+        userRepository.updateUserActive(customUser, userName);
+    }
+
+    @Override
+    public void UserLogOut(CustomUser customUser, Long userId) {
+        userRepository.UserLogOut(customUser, userId);
+    }
 
     @Override
     public List<CustomUser> getAllUsers() {

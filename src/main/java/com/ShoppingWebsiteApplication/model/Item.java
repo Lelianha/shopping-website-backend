@@ -1,4 +1,5 @@
-package  com.ShoppingWebsiteApplication.model;
+package com.ShoppingWebsiteApplication.model;
+
 public class Item {
 
     private Long id;
@@ -9,24 +10,23 @@ public class Item {
     private String pictureUrl;
 
 
-    public Item(Long id , String title ,Double price , Long inStock, Long quantity,String pictureUrl ) {
+    public Item(Long id, String title, Double price, Long inStock, Long quantity, String pictureUrl) {
         this.id = id;
         this.title = title;
         this.price = price;
-        this.inStock=inStock;
+        this.inStock = inStock;
         this.quantity = quantity;
         this.pictureUrl = pictureUrl;
-
-
     }
 
-    public Item(Long id , String title ,Double price , Long inStock, String pictureUrl ) {
+    public Item(Long id, String title, Double price, Long inStock, String pictureUrl) {
         this.id = id;
         this.title = title;
         this.price = price;
-        this.inStock=inStock;
+        this.inStock = inStock;
         this.pictureUrl = pictureUrl;
     }
+
     public Item() {
 
     }

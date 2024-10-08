@@ -1,7 +1,5 @@
 package com.ShoppingWebsiteApplication.model;
 
-import java.util.List;
-
 public class UserItems {
     private Long userId;
 

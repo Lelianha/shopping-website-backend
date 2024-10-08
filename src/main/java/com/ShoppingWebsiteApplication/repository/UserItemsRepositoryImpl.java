@@ -1,6 +1,5 @@
 package com.ShoppingWebsiteApplication.repository;
 
-
 import com.ShoppingWebsiteApplication.model.UserItems;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -16,42 +15,33 @@ public class UserItemsRepositoryImpl implements UserItemsRepository {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-//    @Override
-//    public void createUserItem(UserItems userItems) {
-//            String sql = "INSERT INTO " + USER_ITEMS_TABLE_NAME + " (item_id,   user_id) VALUES (?,?)";
-//            jdbcTemplate.update(sql, userItems.getUserItemId(), userItems.getUserId());
-//    }
-
-        @Override
+    @Override
     public void createUserItem(UserItems userItems) {
-            String sql = "INSERT INTO " + USER_ITEMS_TABLE_NAME + " (item_id,   user_id) VALUES (?,?)";
-            jdbcTemplate.update(sql, userItems.getUserItemId(), userItems.getUserId());
+        String sql = "INSERT INTO " + USER_ITEMS_TABLE_NAME + " (item_id,   user_id) VALUES (?,?)";
+        jdbcTemplate.update(sql, userItems.getUserItemId(), userItems.getUserId());
     }
 
     @Override
-    public void deleteUserItem(Long userId,Long ItemId) {
+    public void deleteUserItem(Long userId, Long ItemId) {
         String sql = "DELETE FROM " + USER_ITEMS_TABLE_NAME + " WHERE user_id=? AND item_id=?";
-        jdbcTemplate.update(sql,userId,ItemId);
+        jdbcTemplate.update(sql, userId, ItemId);
     }
 
     @Override
-    public void deleteUserItemsByUserId(Long userId ) {
+    public void deleteUserItemsByUserId(Long userId) {
         String sql = "DELETE FROM " + USER_ITEMS_TABLE_NAME + " WHERE user_id=?";
-        jdbcTemplate.update(sql,userId);
+        jdbcTemplate.update(sql, userId);
     }
 
     @Override
     public List<Long> getAllUserItems(Long userId) {
-        String sql = "SELECT item_id FROM " + USER_ITEMS_TABLE_NAME + " WHERE user_id=" + userId ;
-        try{
+        String sql = "SELECT item_id FROM " + USER_ITEMS_TABLE_NAME + " WHERE user_id=" + userId;
+        try {
             return jdbcTemplate.queryForList(sql, Long.class);
-        }
-        catch (EmptyResultDataAccessException error){
+        } catch (EmptyResultDataAccessException error) {
             return null;
         }
     }
-
-
 
 
 }

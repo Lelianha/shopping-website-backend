@@ -21,17 +21,6 @@ public class CustomUserRequest {
 
     private String permissions = "";
 
-//    public CustomUserRequest(String firstName, String lastName, String email, String username, String password, String phone, Address address, Boolean active) {
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.email = email;
-//        this.username = username;
-//        this.password = password;
-//        this.phone = phone;
-//        this.address = address;
-//        this.active = active;
-//    }
-
     public CustomUserRequest(String firstName, String lastName, String email, String username, String password, String phone, Address address, Boolean active, String roles, String permissions) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -125,16 +114,16 @@ public class CustomUserRequest {
         this.permissions = permissions;
     }
 
-    public CustomUser toCustomUser(){
+    public CustomUser toCustomUser() {
         return new CustomUser(
                 null,
-                this.firstName ,
-                this.lastName ,
-                this.email ,
+                this.firstName,
+                this.lastName,
+                this.email,
                 this.username,
-                this.password ,
+                this.password,
                 this.phone,
-               this.address,
+                this.address,
                 this.active,
                 "",
                 ""
