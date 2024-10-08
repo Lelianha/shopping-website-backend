@@ -13,6 +13,7 @@ public interface OrderService {
     Long createOrder (Order order ) ;
 
     Order getOrderById( Long orderId);
+    Order getTempOrderByUserId( Long UserId);
 
     void deleteOrderById( Long orderId);
     void deleteOrderByUserId(Long userId);
@@ -21,6 +22,7 @@ public interface OrderService {
     void updateOrderStatus( Long orderId);
     List<Order> getAllOrders();
     List<Long> getAllOrdersByUserId(Long userId);
+    List<Order> getAllCloseOrdersByUserId(Long userId);
 
 
 }

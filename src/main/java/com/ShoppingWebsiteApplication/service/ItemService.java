@@ -1,5 +1,8 @@
 package com.ShoppingWebsiteApplication.service;
 import com.ShoppingWebsiteApplication.model.Item;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -16,6 +19,7 @@ public interface ItemService {
     void updateItemQuantity(Long itemId,Long quantity);
 
     List<Item> getAllItems();
+
 
 
 

@@ -45,17 +45,6 @@ public class AuthenticationController {
     @Autowired
     private AuthenticationService authenticationService;
 
-//    @PostMapping("/authenticate")
-//    @CrossOrigin
-//    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
-//        try{
-//            return ResponseEntity.ok(authenticationService.createAuthenticationToken(authenticationRequest));
-//        } catch (Exception exception){
-//            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Incorrect Username Or Password");
-//        }
-//
-//    }
-
     @PostMapping("/authenticate")
     @CrossOrigin
     public void createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {

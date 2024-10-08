@@ -1,10 +1,9 @@
-<a name="readme-top"></a>
 
 <br>
 
 <div align="center" >
   <img src="./images/Logo-README.png" alt="Logo" width="140" height="80">
-  <h3 align="center"  >Luxe Bags Shopping Website</h3 >
+  <h3 align="center"  ><a id="readme-top"> Luxe Bags Shopping Website</a></h3 >
 </div>
 
 <br>
@@ -33,14 +32,10 @@
 
 ## About The Project <img src="./images/bagIcon.png" width="30" height="30" />
 
-[![Product Name Screen Shot][product-screenshot]]
 
-Handbags are a part of women's accessories that provides different ways to style themselves and make them look the most
-gorgeous lady,<br>
-a proper handbag will add more charm and glamour to a female’s personality.<br>
-Handbags come in different colors and styles so each woman can select any of them based on the occasion, dress, and
-style,<br>
-and on our website, all bags match everyone's mood because LuxeBags were created with every woman's mood in mind.<br>
+Handbags are essential accessories for women, adding both style and charm.
+LuxeBags was created with every woman's mood in mind,
+offering a diverse selection to match any occasion, outfit, or personal taste
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

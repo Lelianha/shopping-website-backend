@@ -65,30 +65,28 @@ public class UserController {
         return userService.getUserId(userName);
     }
 
+    @CrossOrigin
+    @GetMapping(value = "/get/userStatus/{userId}")
+    public Boolean userStatus(@PathVariable Long userId){
+        return userService.userStatus(userId);
+    }
+
+    @CrossOrigin
     @DeleteMapping(value = "/delete/{userId}")
-    private void deleteUserById(@PathVariable("userId") Long userId)
-    {
+    private void deleteUserById(@PathVariable("userId") Long userId) {
         List<Long> orderIds = orderService.getAllOrdersByUserId(userId);
 
-        for (Long orderId: orderIds) {
-            OrderStatus orderStatus=orderRepository.getOrderStatusById(orderId);
-            if( orderStatus.equals(OrderStatus.CLOSE)) {
-                orderItemsService.deleteOrderItemsByOrderId(orderId);
-            }
-            else if (orderStatus.equals(OrderStatus.TEMP)) {
-                List<Long> orderItems =orderItemsRepository.getAllOrderItems(orderId);
-                for (Long orderItemId:orderItems) {
-                    Long quantity =orderItemsRepository.getOrderItemQuantityTemp(userId,orderItemId);
-                    itemRepository.updateItemQuantity(orderItemId,quantity);
-                }
+        for (Long orderId : orderIds) {
+            OrderStatus orderStatus = orderRepository.getOrderStatusById(orderId);
+            if (orderStatus.equals(OrderStatus.CLOSE)) {
+                orderItemsService.deleteCloseOrderItemsByOrderId(orderId);
+            } else if (orderStatus.equals(OrderStatus.TEMP)) {
                 orderItemsService.deleteOrderItemsByOrderId(orderId);
             }
         }
-        orderService.deleteOrderByUserId(userId);
         userItemsService.deleteUserItemsByUserId(userId);
+        orderService.deleteOrderByUserId(userId);
         userService.deleteUserById(userId);
-        userService.deleteUserById(userId);
-
     }
 
 //    @CrossOrigin
@@ -143,11 +141,18 @@ public class UserController {
         userService.updateUser(customUser, userId);
     }
 
-    @CrossOrigin
-    @PutMapping(value = "/update/active/{userName}")
-    private void updateUserActive(@PathVariable String userName,@RequestBody CustomUser customUser)
+   @CrossOrigin
+  @PutMapping(value = "/update/active/{userName}")
+     private void updateUserActive(@PathVariable String userName,@RequestBody CustomUser customUser)
     {
-        userService.updateUserActive(customUser, userName);
+      userService.updateUserActive(customUser, userName);
+    }
+
+    @CrossOrigin
+    @PutMapping(value = "/update/logout/{userId}")
+    private void UserLogOut(@PathVariable Long userId,@RequestBody CustomUser customUser)
+    {
+        userService.UserLogOut(customUser, userId);
     }
 
     @CrossOrigin

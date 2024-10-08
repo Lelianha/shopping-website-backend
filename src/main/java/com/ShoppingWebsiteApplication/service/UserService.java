@@ -14,11 +14,13 @@ public interface UserService {
     Boolean userStatus(Long userId);
     Long getUserId(String userName);
 
+
+
     CustomUser getUserById(Long userId);
     void deleteUserById( Long userId);
 
     void updateUserActive(CustomUser customUser, String userName);
-
+    void UserLogOut(CustomUser customUser, Long userId);
     void updateUser(CustomUser customUser, Long userId);
 
     List<CustomUser> getAllUsers();

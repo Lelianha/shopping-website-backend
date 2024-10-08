@@ -10,7 +10,8 @@ public interface OrderRepository {
     Long createOrder( Order order);
 
     Order getOrderById( Long orderId);
-    OrderStatus getOrderStatusById(Long orderId);
+    Order getTempOrderByUserId( Long orderId);
+    OrderStatus getOrderStatusById(Long userId);
 
     void deleteOrderById(Long orderId);
 
@@ -23,6 +24,7 @@ public interface OrderRepository {
     List<Order> getAllOrders();
 
     List<Long> getAllOrdersByUserId(Long userId);
+    List<Order> getAllCloseOrdersByUserId(Long userId);
 
     List<Long> getAllTempOrdersByUserId(Long userId);
 

@@ -57,5 +57,10 @@ public class ItemController {
         return itemService.getAllItems();
     }
 
+   /* @CrossOrigin
+    @GetMapping(value = "/getSpecific")
+    public List<Item> getSpecificItems(@PathVariable Long itemId){
+        return itemService.getSpecificItems();
+    }*/
 }
 

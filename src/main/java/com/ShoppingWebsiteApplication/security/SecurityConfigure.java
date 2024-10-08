@@ -39,6 +39,8 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter {
                 .antMatchers("/user/delete/name/{userName}").permitAll()
                 .antMatchers("/user/get/status/{userName}").permitAll()
                 .antMatchers("/user/update/active/{userName}").permitAll()
+                .antMatchers("/user/get/userStatus/{userId}").permitAll()
+                .antMatchers("/user/update/logout/{userId}").permitAll()
 
                 .antMatchers("/user/get/id/{userName}").permitAll()
                 .antMatchers("/user/get/{userId}").permitAll()
@@ -53,8 +55,10 @@ public class SecurityConfigure extends WebSecurityConfigurerAdapter {
                 .antMatchers("/item/getAll").permitAll()
                 .antMatchers("/order/create").permitAll()
                 .antMatchers("/order/get/{orderId}").permitAll()
+                .antMatchers("/order/get/tempOrder/{userId}").permitAll()
                 .antMatchers("/order/getAll").permitAll()
                 .antMatchers("/order/getAll/userName/{userName}").permitAll()
+                .antMatchers("/order/getAll/CloseOrders/{userId}").permitAll()
                 .antMatchers("/order/update/shippingAddress/{orderId}").permitAll()
                 .antMatchers("/order/update/status/{orderId}").permitAll()
 

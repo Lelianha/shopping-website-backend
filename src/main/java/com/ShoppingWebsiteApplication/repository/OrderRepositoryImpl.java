@@ -40,6 +40,17 @@ public class OrderRepositoryImpl  implements OrderRepository {
     }
 
     @Override
+    public Order getTempOrderByUserId(Long userId) {
+        String sql = "SELECT * FROM " + ORDERS_TABLE_NAME + " WHERE user_id=" + userId +"AND status='TEMP'";
+
+        try {
+            return jdbcTemplate.queryForObject(sql, new OrderMapper());
+        } catch (EmptyResultDataAccessException error){
+            return null;
+        }
+    }
+
+    @Override
     public OrderStatus getOrderStatusById(Long orderId) {
         String sql = "SELECT status FROM " + ORDERS_TABLE_NAME + " WHERE id=?";
         try {
@@ -118,6 +129,17 @@ public class OrderRepositoryImpl  implements OrderRepository {
 
         return jdbcTemplate.queryForList(sql, Long.class);
     }
+    @Override
+    public List<Order> getAllCloseOrdersByUserId(Long userId) {
+        String sql = "SELECT * FROM " + ORDERS_TABLE_NAME + " WHERE user_id=" + userId +"AND status='CLOSE'";
+
+        try {
+            return jdbcTemplate.query(sql, new OrderMapper());
+        } catch (EmptyResultDataAccessException error){
+            return null;
+        }    }
+
+
     @Override
     public List<Long> getAllTempOrdersByUserId(Long  userId) {
         String sql = "SELECT id FROM " + ORDERS_TABLE_NAME + " WHERE user_id=" + userId +"AND status='TEMP'";

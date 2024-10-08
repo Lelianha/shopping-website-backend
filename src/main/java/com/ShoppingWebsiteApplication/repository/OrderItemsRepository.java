@@ -28,6 +28,7 @@ public interface OrderItemsRepository {
     void createOrderItem(OrderItems orderItems);
     void deleteOrderItemsById( Long orderId, Long ItemsId);
     void deleteOrderItemsByOrderId(Long orderId);
+    void deleteCloseOrderItemsByOrderId(Long orderId);
     void incOrderItemQuantity( Long orderId, Long ItemsId);
     void decOrderItemQuantity( Long orderId, Long ItemsId);
 

@@ -1,6 +1,4 @@
 package com.ShoppingWebsiteApplication.repository;
-
-
 import com.ShoppingWebsiteApplication.model.Item;
 import com.ShoppingWebsiteApplication.model.OrderItems;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +23,21 @@ public class OrderItemsRepositoryImpl implements OrderItemsRepository {
     JdbcTemplate jdbcTemplate;
 
 
+  //  @Override
+  //  public void createOrderItem(OrderItems orderItems) {
+  //      String sql = "INSERT INTO " + ORDER_ITEMS_TABLE_NAME + " (item_id, quantity, user_id,order_id) VALUES (?,?,?,?)";
+  //      jdbcTemplate.update(sql, orderItems.getOrderItemId(),1,orderItems.getUserId(), orderItems.getOrderId());
+
+  //  }
     @Override
     public void createOrderItem(OrderItems orderItems) {
-        String sql = "INSERT INTO " + ORDER_ITEMS_TABLE_NAME + " (item_id, quantity, user_id,order_id) VALUES (?,?,?,?)";
-        jdbcTemplate.update(sql, orderItems.getOrderItemId(),1,orderItems.getUserId(), orderItems.getOrderId());
+        // Insert the new order item
+        String sqlInsert = "INSERT INTO " + ORDER_ITEMS_TABLE_NAME + " (item_id, quantity, user_id, order_id) VALUES (?, ?, ?, ?)";
+        jdbcTemplate.update(sqlInsert, orderItems.getOrderItemId(), 1, orderItems.getUserId(), orderItems.getOrderId());
 
+        // Update the Number_of_items in the orders table
+        String sqlUpdate = "UPDATE " + ORDERS_TABLE_NAME + " SET Number_of_items = Number_of_items + 1 WHERE id = ?";
+        jdbcTemplate.update(sqlUpdate, orderItems.getOrderId());
     }
 
 
@@ -41,6 +49,12 @@ public class OrderItemsRepositoryImpl implements OrderItemsRepository {
     }
     @Override
     public void deleteOrderItemsByOrderId(Long orderId) {
+        String sql = "DELETE FROM " + ORDER_ITEMS_TABLE_NAME + " WHERE order_id=? ";
+        jdbcTemplate.update(sql,orderId);
+    }
+
+    @Override
+    public void deleteCloseOrderItemsByOrderId(Long orderId) {
         String sql = "DELETE FROM " + ORDER_ITEMS_TABLE_NAME + " WHERE order_id=? ";
         jdbcTemplate.update(sql,orderId);
     }
@@ -59,12 +73,17 @@ public class OrderItemsRepositoryImpl implements OrderItemsRepository {
         String sql = "UPDATE " + ORDER_ITEMS_TABLE_NAME + " SET  quantity=(quantity+1) " +
                 " WHERE order_id=? AND item_id=?";
         jdbcTemplate.update(sql, orderId,ItemsId);
+
+        String sqlUpdate = "UPDATE " + ORDERS_TABLE_NAME + " SET Number_of_items = Number_of_items + 1 WHERE id = ?";
+        jdbcTemplate.update(sqlUpdate, orderId);
     }
     @Override
     public void decOrderItemQuantity( Long orderId, Long ItemsId) {
         String sql = "UPDATE " + ORDER_ITEMS_TABLE_NAME + " SET  quantity=(quantity-1) " +
                 " WHERE order_id=? AND item_id=?";
         jdbcTemplate.update(sql, orderId,ItemsId);
+        String sqlUpdate = "UPDATE " + ORDERS_TABLE_NAME + " SET Number_of_items = Number_of_items - 1 WHERE id = ?";
+        jdbcTemplate.update(sqlUpdate, orderId);
     }
 
     //    @Override
@@ -124,13 +143,14 @@ public class OrderItemsRepositoryImpl implements OrderItemsRepository {
     @Override
     public Long getOrderItemQuantityTemp(Long orderId,Long itemId) {
         String sql = "SELECT quantity FROM " + ORDER_ITEMS_TABLE_NAME + " LEFT JOIN " + ORDERS_TABLE_NAME + " ON orderItems.order_id = orders.id"
-                + " WHERE orderItems.order_id=? AND orderItems.item_id=? AND orders.status='TEMP' ";
+                + " WHERE orderItems.order_id=? AND orderItems.item_id=?  ";
         try {
             return jdbcTemplate.queryForObject(sql, Long.class,orderId,itemId);
         } catch (EmptyResultDataAccessException error){
             return null;
         }
     }
+
 
 
     @Override

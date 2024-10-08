@@ -15,6 +15,7 @@ public interface UserRepository {
     void deleteUserById(Long userId);
 
     void updateUserActive(CustomUser customUser, String userName);
+    void UserLogOut(CustomUser customUser, Long userId);
 
 void updateUser(CustomUser customUser, Long userId);
 

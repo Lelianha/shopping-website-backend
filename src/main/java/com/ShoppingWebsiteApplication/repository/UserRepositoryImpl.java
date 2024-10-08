@@ -81,11 +81,17 @@ public class UserRepositoryImpl implements UserRepository {
 //        jdbcTemplate.update(sql, customUser.getActive(), userName);
 //    }
 @Override
-public void updateUserActive(CustomUser customUser,  String  userName) {
+public void updateUserActive(CustomUser customUser, String userName) {
     String sql = "UPDATE " + USER_TABLE_NAME + " SET   active=?" +
             " WHERE username=?";
     jdbcTemplate.update(sql, customUser.getActive(), userName);
 }
+    @Override
+    public void UserLogOut(CustomUser customUser, Long userId) {
+        String sql = "UPDATE " + USER_TABLE_NAME + " SET   active=?" +
+                " WHERE id=?";
+        jdbcTemplate.update(sql, customUser.getActive(), userId);
+    }
 
 
 

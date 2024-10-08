@@ -64,13 +64,6 @@ public  class UserServiceImpl implements UserService {
     @Override
     public void deleteUserById(Long userId) {
 
-        List<Long> arrOfOrders = orderRepository.getAllOrdersByUserId(userId);
-        for (Long orderId:arrOfOrders) {
-            List<Long> arrOfOrderItems = orderItemsRepository.getAllOrderItems(orderId);
-            for (Long orderItemId:arrOfOrderItems) {
-                itemRepository.incItemQuantity(orderItemId);
-            }
-        }
         userRepository.deleteUserById(userId);
     }
 
@@ -79,7 +72,10 @@ public  class UserServiceImpl implements UserService {
     @Override
     public void updateUser(CustomUser customUser, Long userId) {userRepository.updateUser(customUser, userId);}
     @Override
-    public void updateUserActive(CustomUser customUser, String userName) {userRepository.updateUserActive(customUser, userName);}
+    public void updateUserActive(CustomUser customUser, String userName) {userRepository.updateUserActive(customUser,  userName);}
+
+    @Override
+    public void UserLogOut(CustomUser customUser, Long userId) {userRepository.UserLogOut(customUser, userId);}
 
     @Override
     public List<CustomUser> getAllUsers() {

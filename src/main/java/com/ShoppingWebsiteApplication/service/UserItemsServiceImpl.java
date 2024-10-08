@@ -28,30 +28,20 @@ public class UserItemsServiceImpl implements UserItemsService {
 //        }
 //    }
 
+
     @Override
     public void createUserItem(UserItems userItems) {
-//        List<Long> itemsId = userItemsRepository.getAllUserItems(userItems.getUserId());
-//        itemsId.forEach(itemId -> {
-//            if (!(itemsId.contains(userItems.getUserItemId()))) {
-//                userItemsRepository.createUserItem(userItems);
-//            }
-//        });
-        if(userItemsRepository.getAllUserItems(userItems.getUserId()).size() != 0){
+        // Retrieve the list of item IDs for the user once
         List<Long> itemsId = userItemsRepository.getAllUserItems(userItems.getUserId());
-//        itemsId.forEach(itemId -> {
-//            if (!(itemsId.contains(userItems.getUserItemId()))) {
-//                userItemsRepository.createUserItem(userItems);
-//            }
-            if (!((itemsId.contains(userItems.getUserItemId())))) {
-                userItemsRepository.createUserItem(userItems);
-            }
-//        });
-        }
-        else if(userItemsRepository.getAllUserItems(userItems.getUserId()).size() == 0){
+
+        // Check if the user already has the item
+        if (!itemsId.contains(userItems.getUserItemId())) {
+            // If not, create the new user item
             userItemsRepository.createUserItem(userItems);
-
+        } else {
+            // Optionally, log that the item already exists for the user
+            System.out.println("User already has this item.");
         }
-
     }
 
 

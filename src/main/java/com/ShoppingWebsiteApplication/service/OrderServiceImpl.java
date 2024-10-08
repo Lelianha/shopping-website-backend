@@ -24,8 +24,13 @@ public class OrderServiceImpl implements OrderService {
         return null;
     }
 
+
     @Override
     public Order getOrderById(Long orderId) {return orderRepository.getOrderById(orderId);
+    }
+
+    @Override
+    public Order getTempOrderByUserId(Long userId) {return orderRepository.getTempOrderByUserId(userId);
     }
 
     @Override
@@ -52,6 +57,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Long> getAllOrdersByUserId(Long userId) {
         return orderRepository.getAllOrdersByUserId(userId);
+    }
+   @Override
+    public List<Order> getAllCloseOrdersByUserId(Long userId) {
+        return orderRepository.getAllCloseOrdersByUserId(userId);
     }
 
 

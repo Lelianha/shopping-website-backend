@@ -151,11 +151,16 @@ public class OrderItemsServiceImpl implements OrderItemsService {
 
                 itemRepository.incItemQuantity(id);
             }
-//            delt(id,orderId);
 
         }
         orderItemsRepository.deleteOrderItemsByOrderId(orderId);
         orderRepository.deleteOrderById(orderId);
+    }
+    @Override
+    public void deleteCloseOrderItemsByOrderId(Long orderId) {
+        orderItemsRepository.deleteCloseOrderItemsByOrderId(orderId);
+        orderRepository.deleteOrderById(orderId);
+
     }
 
 
